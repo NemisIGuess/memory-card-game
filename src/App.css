@@ -1,0 +1,9 @@
+.header {
+  width: 100%;
+  background-color: black;
+}
+
+.sectionTitle {
+  display: inline;
+  color: white;
+}
