@@ -1,142 +1,120 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import '../Style/Game.css';
+import _ from 'lodash';
+import alrund from '../Images/Alrund.png';
+import birgi from '../Images/Birgi.png';
+import cosima from '../Images/Cosima.png';
+import egon from '../Images/Egon.png';
+import esika from '../Images/Esika.png';
+import halvar from '../Images/Halvar.png';
+import jorn from '../Images/Jorn.png';
+import kolvori from '../Images/Kolvori.png';
+import reidane from '../Images/Reidane.png';
+import sigrid from '../Images/Sigrid.png';
+import tergrid from '../Images/Tergrid.png';
+import toralf from '../Images/Toralf.png';
+import valki from '../Images/Valki.png';
 
 function Game() {
   const [characterArray, setCharacter] = useState([
     {
-      id: 'Aerith',
-      src: '',
+      id: 'Alrund, God of the Cosmos',
+      src: alrund,
       clicked: false,
     },
     {
-      id: 'Barret',
-      src: '',
+      id: 'Birgi, God of Storytelling',
+      src: birgi,
       clicked: false,
     },
     {
-      id: 'Biggs',
-      src: '',
+      id: 'Cosima, God of the Voyage',
+      src: cosima,
       clicked: false,
     },
     {
-      id: 'Bugenhagen',
-      src: '',
+      id: 'Egon, God of Death',
+      src: egon,
       clicked: false,
     },
     {
-      id: 'Cait Sith',
-      src: '',
+      id: 'Esika, God of the Tree',
+      src: esika,
       clicked: false,
     },
     {
-      id: 'Cid',
-      src: '',
+      id: 'Halvar, God of Battle',
+      src: halvar,
       clicked: false,
     },
     {
-      id: 'Cloud',
-      src: '',
+      id: 'Jorn, God of Winter',
+      src: jorn,
       clicked: false,
     },
     {
-      id: 'Dio',
-      src: '',
+      id: 'Kolvori, God of Kinship',
+      src: kolvori,
       clicked: false,
     },
     {
-      id: 'Don Corneo',
-      src: '',
+      id: 'Reidane, God of the Worthy',
+      src: reidane,
       clicked: false,
     },
     {
-      id: 'Dyne',
-      src: '',
+      id: 'Sigrid, God-Favored',
+      src: sigrid,
       clicked: false,
     },
     {
-      id: 'Jenova',
-      src: '',
+      id: 'Tergrid, God of Fright',
+      src: tergrid,
       clicked: false,
     },
     {
-      id: 'Jessie',
-      src: '',
+      id: 'Toralf, God of Fury',
+      src: toralf,
       clicked: false,
     },
     {
-      id: 'Hojo',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Red XIII',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Reeve',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Reno',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Rude',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Rufus',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Sephiroth',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Tifa',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Tseng',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Vincent',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Wedge',
-      src: '',
-      clicked: false,
-    },
-    {
-      id: 'Yuffie',
-      src: '',
+      id: 'Valki, God of Lies',
+      src: valki,
       clicked: false,
     },
   ]);
 
-  const changeStatus = () => {
-    console.log(characterArray[15]);
-    characterArray[15].cliked
-      ? setCharacter(...characterArray, (characterArray[15].clicked = false))
-      : setCharacter(...characterArray, (characterArray[15].clicked = true));
-    console.log(characterArray[15]);
-    console.log(characterArray);
+  const [cardsToDisplay, setCardsToDisplay] = useState([]);
+
+  const changeCardStatus = (e) => {
+    console.log(e.target);
   };
 
+  useEffect(() => {
+    const randomCards = _.sampleSize(characterArray, 3);
+    if (
+      randomCards[0].clicked === false ||
+      randomCards[1].clicked === false ||
+      randomCards[2].clicked === false
+    ) {
+      setCardsToDisplay(randomCards);
+      randomCards.map((card) => card.addEventListener);
+    }
+  }, [characterArray]);
+
   return (
-    <div className="App">
-      <h1>Hola</h1>
-      <button onClick={changeStatus}>Hola</button>
+    <div className="game">
+      {cardsToDisplay.map((card) => {
+        return (
+          <img
+            alt={card.id}
+            key={card.id}
+            src={card.src}
+            className="card"
+            onClick={changeCardStatus}
+          />
+        );
+      })}
     </div>
   );
 }
