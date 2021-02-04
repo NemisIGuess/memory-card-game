@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../Style/About.css';
 
 function About() {
@@ -11,13 +11,9 @@ function About() {
       </p>
       <h2>How to play</h2>
       <p>
-        Four cards will appear on screen you will have to click one you haven't
-        done so previously. <br />
-        The goal is to score as high as possible.
-        <br />
-        Your score will reset once you have clicked the same image twice. Try to
-        get the maximum score! <br />
-        (You will see a message once you get there)
+        20 cards will appear on screen face down. There are 10 different cards
+        among them, two copies of each. Try to pair them by revealing them one
+        by one.
       </p>
       <h2>Credits</h2>
       <p>

@@ -1,7 +1,13 @@
 {
-  "short_name": "FF7 Memory Game",
-  "name": "Final Fantasy 7 memory game",
-  "icons": [],
+  "short_name": "MTG Kaldheim Memory Game",
+  "name": "Magic the Gathering Memory Game",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "32x32 16x16",
+      "type": "image/x-icon"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

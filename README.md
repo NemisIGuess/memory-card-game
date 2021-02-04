@@ -1,12 +1,11 @@
-# Final Fantasy 7 Memory Card Game
+# Kaldheim Memory Card Game
 
-A memory game with a Final Fantasy 7 theme.
+A memory game with a Kaldheim theme, from Magic the Gathering.
 
 ## How it works
 
-Three cards will appear on the screen.
-You have to choose one you haven't chosen previously, for each different card you successfully choose your score will go up.
+20 cards will appear on screen face down.
+There are 10 different cards among them, two copies of each.
+Try to pair them by revealing them one by one.
 
 Try to get the maximum score!
-
-Mobile friendly.
