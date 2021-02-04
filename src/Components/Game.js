@@ -87,20 +87,37 @@ function Game() {
   const [cardsToDisplay, setCardsToDisplay] = useState([]);
 
   const changeCardStatus = (e) => {
-    console.log(e.target);
+    characterArray.map((card, index) => {
+      if (card.id === e.target.alt) {
+        const newCharacterArray = [...characterArray];
+        newCharacterArray[index].clicked = true;
+        setCharacter(newCharacterArray);
+      }
+      return characterArray;
+    });
   };
 
   useEffect(() => {
-    const randomCards = _.sampleSize(characterArray, 3);
-    if (
-      randomCards[0].clicked === false ||
-      randomCards[1].clicked === false ||
-      randomCards[2].clicked === false
-    ) {
-      setCardsToDisplay(randomCards);
-      randomCards.map((card) => card.addEventListener);
+    console.log(characterArray);
+    let randomCards = _.sampleSize(characterArray, 3);
+    // Comprueba si queda alguna carta sin seleccionar en el array padre y si es asi comprueba si todas las elegidas han sido seleccionadas, si lo han sido vuelve a elegir tres diferentes.
+    if (characterArray.some((card) => card.clicked === false)) {
+      while (randomCards.every((card) => card.clicked === true)) {
+        randomCards = _.sampleSize(characterArray, 3);
+      }
+    } else if (characterArray.every((card) => card.clicked === true)) {
+      setWinner([true]);
     }
+    setCardsToDisplay(randomCards);
   }, [characterArray]);
+
+  const [hasSomeoneWon, setWinner] = useState([false]);
+
+  useEffect(() => {
+    if (hasSomeoneWon[0]) {
+      alert('You Won!');
+    }
+  }, [hasSomeoneWon]);
 
   return (
     <div className="game">
