@@ -9,3 +9,5 @@ There are 10 different cards among them, two copies of each.
 Try to pair them by revealing them one by one.
 
 Try to get the maximum score!
+
+<!-- Change the How it works section of the readme and the about page. -->
