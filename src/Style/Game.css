@@ -1,3 +1,14 @@
+.game {
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  grid-template-rows: repeat(auto-fill, 250);
+  grid-row-gap: 0.5em;
+  grid-column-gap: 1em;
+}
+
 .card {
   margin: 5px;
+  width: 170px;
+  height: 200px;
+  cursor: pointer;
 }

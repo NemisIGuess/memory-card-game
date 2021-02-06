@@ -43,211 +43,246 @@ function Game() {
     {
       id: 'Aegar, the Freezing Flame',
       src: aegar,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Alrund, God of the Cosmos',
       src: alrund,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Arni Brokenbow',
       src: arni,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Birgi, God of Storytelling',
       src: birgi,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Cosima, God of the Voyage',
       src: cosima,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Egon, God of Death',
       src: egon,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Esika, God of the Tree',
       src: esika,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Firja, Judge of Valor',
       src: firja,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Fynn, the Fangbearer',
       src: fynn,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Halvar, God of Battle',
       src: halvar,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Harald, King of Skemfar',
       src: harald,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Inga Rune-Eyes',
       src: inga,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Jorn, God of Winter',
       src: jorn,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Kardur, Doomscourge',
       src: kardur,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Kaya the Inexorable',
       src: kaya,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Koll, the Forgemaster',
       src: koll,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Kolvori, God of Kinship',
       src: kolvori,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Koma, Cosmos Serpent',
       src: koma,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Magda, Brazen Outlaw',
       src: magda,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Maja, Bretagard Protector',
       src: maja,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Moritte of the Frost',
       src: moritte,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Narfi, Betrayer King',
       src: narfi,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Niko Aris',
       src: niko,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Orvar, the All-Form',
       src: orvar,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Reidane, God of the Worthy',
       src: reidane,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Sarulf, Realm Eater',
       src: sarulf,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Sigrid, God-Favored',
       src: sigrid,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Svella, Ice Shaper',
       src: svella,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Tergrid, God of Fright',
       src: tergrid,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Toralf, God of Fury',
       src: toralf,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Tyvar Kell',
       src: tyvar,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Valki, God of Lies',
       src: valki,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Varragoth, Bloodsky Sire',
       src: varragoth,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Vega, the Watcher',
       src: vega,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
     {
       id: 'Vorinclex, Monstrous Raider',
       src: vorinclex,
-      clicked: false,
+      revealed: false,
+      paired: false,
       index: '',
     },
   ]);
@@ -256,16 +291,53 @@ function Game() {
     _.sampleSize(characterArray, 10),
   );
 
+  const [lastPickedCard, setPickedCard] = useState([]);
+
   const changeCardStatus = (e) => {
     chosenCards.map((card, index) => {
-      if (card.index.toString() === e.target.attributes[1].value) {
+      if (card.revealed === true && !!lastPickedCard) {
+        return;
+      } else if (card.index.toString() === e.target.attributes[1].value) {
         const newCharacterArray = [...chosenCards];
-        newCharacterArray[index].clicked = true;
+        newCharacterArray[index].revealed = true;
         setChosenCards(newCharacterArray);
+        if (lastPickedCard[0] !== card) {
+          setPickedCard([...lastPickedCard, card]);
+        }
+        console.log(lastPickedCard);
       }
-      return chosenCards;
+      return card;
     });
   };
+
+  useEffect(() => {
+    if (
+      !!lastPickedCard[0] &&
+      !!lastPickedCard[1] &&
+      lastPickedCard[0].id === lastPickedCard[1].id
+    ) {
+      // Score goes up
+      console.log('Yay!');
+      setPickedCard([]);
+    } else if (
+      (!!lastPickedCard[0] && !lastPickedCard[1]) ||
+      !lastPickedCard[0]
+    ) {
+      return;
+    } else if (lastPickedCard[0].id !== lastPickedCard[1].id) {
+      chosenCards.map((card, index) => {
+        if (
+          card.id === lastPickedCard[0].id ||
+          card.id === lastPickedCard[1].id
+        ) {
+          const newCharacterArray = [...chosenCards];
+          newCharacterArray[index].revealed = false;
+          setChosenCards(newCharacterArray);
+        }
+      });
+      setPickedCard([]);
+    }
+  }, [lastPickedCard]);
 
   useEffect(() => {
     const cardsToDuplicate = chosenCards;
@@ -278,6 +350,7 @@ function Game() {
     setChosenCards(indexedArray);
   }, []);
 
+  // Asi funcionaba el juego antes, al cambiar el modo de juego ya no vale.
   // useEffect(() => {
   // console.log(characterArray);
   // let randomCards = _.sampleSize(characterArray, 3);
@@ -292,18 +365,19 @@ function Game() {
   // setCardsToDisplay(randomCards);
   // }, [chosenCards]);
 
-  const [hasSomeoneWon, setWinner] = useState([false]);
+  //Codigo del modo de juego anterior.
+  // const [hasSomeoneWon, setWinner] = useState([false]);
 
-  useEffect(() => {
-    if (hasSomeoneWon[0]) {
-      alert('You Won!');
-    }
-  }, [hasSomeoneWon]);
+  // useEffect(() => {
+  //   if (hasSomeoneWon[0]) {
+  //     alert('You Won!');
+  //   }
+  // }, [hasSomeoneWon]);
 
   return (
     <div className="game">
       {chosenCards.map((card, index) => {
-        if (card.clicked === false) {
+        if (card.revealed === false) {
           return (
             <img
               alt={card.id}
@@ -314,7 +388,7 @@ function Game() {
               onClick={changeCardStatus}
             />
           );
-        } else if (card.clicked === true) {
+        } else if (card.revealed === true) {
           return (
             <img
               alt={card.id}
