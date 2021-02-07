@@ -4,7 +4,7 @@ A memory game with a Kaldheim theme, from Magic the Gathering.
 
 ## How it works
 
-20 cards will appear on screen face down.
+20 cards from the Kaldheim set will appear on screen face down.
 There are 10 different cards among them, two copies of each.
 Try to pair them by revealing them one by one.
 
