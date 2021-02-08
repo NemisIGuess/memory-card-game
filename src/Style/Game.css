@@ -1,14 +1,51 @@
 .game {
   display: grid;
-  grid-template-columns: repeat(5, 200px);
-  grid-template-rows: repeat(auto-fill, 250);
-  grid-row-gap: 0.5em;
+  grid-template-columns: repeat(5, 140px);
+  grid-template-rows: repeat(auto-fill, 195px);
+  grid-row-gap: 1em;
   grid-column-gap: 1em;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
 }
 
 .card {
-  margin: 5px;
-  width: 170px;
-  height: 200px;
+  width: 140px;
+  height: 195px;
   cursor: pointer;
+  justify-self: center;
+  align-self: center;
+  filter: drop-shadow(3px 3px 3px rgba(97, 97, 97, 0.623));
+}
+
+.flipCard {
+  background-color: transparent;
+  width: 140px;
+  height: 195px;
+  perspective: 1000px; /* Efecto 3D */
+}
+
+/* Container que tiene ambos lados de la carta */
+.flipCardInner {
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Da la vuelta a la carta */
+.flippedCard {
+  transform: rotateY(180deg);
+}
+
+/* Posicion de ambos lados de la carta */
+.flipCardFront,
+.flipCardBack {
+  position: absolute;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* La parte de atras de la carta */
+.flipCardBack {
+  transform: rotateY(180deg);
 }

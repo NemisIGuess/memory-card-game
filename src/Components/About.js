@@ -6,14 +6,14 @@ function About() {
     <div className="about">
       <h2>About</h2>
       <p>
-        Project developed as part of The Odin Project JavaScript course. Done by
-        Nemis.
+        Project developed as part of The Odin Project JavaScript course.
+        Developed by Nemis.
       </p>
       <h2>How to play</h2>
       <p>
         20 cards will appear on screen face down. There are 10 different cards
         among them, two copies of each. Try to pair them by revealing them one
-        by one.
+        by one before running out of attempts.
       </p>
       <h2>Credits</h2>
       <p>
