@@ -38,7 +38,7 @@ import vega from '../Images/Vega.png';
 import vorinclex from '../Images/Vorinclex.png';
 import cardBack from '../Images/CardBack.png';
 
-function Game() {
+function Game(props) {
   const [characterArray, setCharacter] = useState([
     {
       id: 'Aegar, the Freezing Flame',
@@ -257,17 +257,27 @@ function Game() {
     _.sampleSize(characterArray, 10),
   );
 
+  // Iniciamos el limite de intentos
+  const [attemps, setAttemps] = useState(10);
+
+  //Logica que controla si ganas o pierdes
+  useEffect(() => {
+    if (attemps === 0) {
+      alert('You lost!');
+    }
+  }, [attemps]);
+
   // Inicializamos un array donde guardamos las cartas a las que hacemos clicks en parejas
   const [lastPickedCard, setPickedCard] = useState([]);
 
   //Controla el estado de las cartas tras hacer click en ellas
   const handleClickOnCard = (e) => {
     chosenCards.map((card, index) => {
-      // Comprobamos si la carta ya ha sido clickada o emparejada y salimos si asi es
+      // Comprobamos si la carta ya ha sido pulsada y salimos si asi es
       if (card.revealed === true) {
         return card;
       }
-      // Comprobamos si la carta clickada coincide con alguna del array y si es asi le cambiamos la property revealed
+      // Comprobamos si la carta pulsada coincide con alguna del array y si es asi le cambiamos la property revealed
       else if (card.index.toString() === e.target.attributes[1].value) {
         const newCharacterArray = [...chosenCards];
         newCharacterArray[index].revealed = true;
@@ -279,6 +289,7 @@ function Game() {
     });
   };
 
+  // Logica de acierto o error
   useEffect(() => {
     if (!lastPickedCard[0] || (!!lastPickedCard[0] && !lastPickedCard[1])) {
       // Si aun no tenemos ambas cartas en el array volvemos
@@ -306,6 +317,7 @@ function Game() {
         }
       });
       // El jugador tiene 1 error mas
+      setAttemps(attemps - 1);
       console.log('You choose.... WRONG!');
       setPickedCard([]);
     }
@@ -324,60 +336,64 @@ function Game() {
   }, []);
 
   return (
-    <div className="game">
-      {chosenCards.map((card, index) => {
-        if (card.revealed === false) {
-          return (
-            <div className="flipCard" key={index}>
-              <div className="flipCardInner">
-                <div className="flipCardFront">
-                  <img
-                    alt={card.id}
-                    value={index}
-                    src={cardBack}
-                    className="card"
-                    onClick={handleClickOnCard}
-                  />
-                </div>
-                <div className="flipCardBack">
-                  <img
-                    alt={card.id}
-                    value={index}
-                    src={card.src}
-                    className="card"
-                    onClick={handleClickOnCard}
-                  />
-                </div>
-              </div>
-            </div>
-          );
-        } else if (card.revealed === true) {
-          return (
-            <div className="flipCard" key={index}>
-              <div className="flipCardInner flippedCard">
-                <div className="flipCardFront">
-                  <img
-                    alt={card.id}
-                    value={index}
-                    src={cardBack}
-                    className="card"
-                    onClick={handleClickOnCard}
-                  />
-                </div>
-                <div className="flipCardBack">
-                  <img
-                    alt={card.id}
-                    value={index}
-                    src={card.src}
-                    className="card"
-                    onClick={handleClickOnCard}
-                  />
+    <div className="container">
+      <h3 className="scoreboard">Attemps left:</h3>
+      <h3 className="scoreboard"> {attemps}</h3>
+      <div className="game">
+        {chosenCards.map((card, index) => {
+          if (card.revealed === false) {
+            return (
+              <div className="flipCard" key={index}>
+                <div className="flipCardInner">
+                  <div className="flipCardFront">
+                    <img
+                      alt={card.id}
+                      value={index}
+                      src={cardBack}
+                      className="card"
+                      onClick={handleClickOnCard}
+                    />
+                  </div>
+                  <div className="flipCardBack">
+                    <img
+                      alt={card.id}
+                      value={index}
+                      src={card.src}
+                      className="card"
+                      onClick={handleClickOnCard}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        }
-      })}
+            );
+          } else if (card.revealed === true) {
+            return (
+              <div className="flipCard" key={index}>
+                <div className="flipCardInner flippedCard">
+                  <div className="flipCardFront">
+                    <img
+                      alt={card.id}
+                      value={index}
+                      src={cardBack}
+                      className="card"
+                      onClick={handleClickOnCard}
+                    />
+                  </div>
+                  <div className="flipCardBack">
+                    <img
+                      alt={card.id}
+                      value={index}
+                      src={card.src}
+                      className="card"
+                      onClick={handleClickOnCard}
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        })}
+      </div>
     </div>
   );
 }

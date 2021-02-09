@@ -6,7 +6,7 @@
   grid-column-gap: 1em;
   justify-content: center;
   align-items: center;
-  margin-top: 1em;
+  margin-top: 0.3em;
 }
 
 .card {
@@ -48,4 +48,9 @@
 /* La parte de atras de la carta */
 .flipCardBack {
   transform: rotateY(180deg);
+}
+
+.scoreboard {
+  text-align: center;
+  margin: 0;
 }

@@ -7,7 +7,7 @@ function App() {
   const [componentToRender, setComponent] = useState(true);
 
   const ChangeComponent = (props) => {
-    if (!!props.component) {
+    if (props.component) {
       return <Game />;
     } else if (!props.component) {
       return <About />;
